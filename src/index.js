@@ -126,7 +126,8 @@ instance.prototype.getInformation = function () {
 				self.BULB = new Control(self.config.host, { cold_white_support: true });
 			}
 	
-			self.BULB.queryState().then(info => {
+			self.BULB.queryState()
+			.then(info => {
 				if (info) {
 					self.status(self.STATUS_OK);
 					self.BULBINFO = info;
@@ -142,6 +143,25 @@ instance.prototype.getInformation = function () {
 						self.stopInterval();
 					}
 				}
+			})
+			.catch(error => {
+				self.status(self.STATUS_ERROR);
+
+				let errorMsg = null;
+				Object.keys(error).forEach(function(key) {
+					if (key === 'code') {
+						if (error[key] === 'ECONNREFUSED') {
+							errorMsg = 'Unable to communicate with Device. Connection refused. Is this the right IP address? Is it still online?';
+							self.log('error', errorMsg);
+						}
+					}
+				});
+				
+				if (!errorMsg) {
+					self.log('error', 'Error from Bulb: ' + String(error));
+				}
+				self.log('error', 'Stopping Update interval due to error.');
+				self.stopInterval();
 			});
 		}
 	}
