@@ -1,0 +1,33 @@
+{
+	"name": "magichome-bulb",
+	"version": "1.0.0",
+	"api_version": "1.0.0",
+	"keywords": [
+		"bulb",
+		"magic home"
+	],
+	"manufacturer": "Magic Home",
+	"product": [
+		"Bulb"
+	],
+	"shortname": "magichome-bulb",
+	"description": "Companion module for Magic Home Bulbs",
+	"main": "src/index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Joseph Adams <josephdadams@gmail.com>",
+	"license": "MIT",
+	"dependencies": {
+		"colorsys": "^1.0.22",
+		"magic-home": "^2.7.1"
+	},
+	"homepage": "https://github.com/bitfocus/companion-module-magichome-bulb#readme",
+	"bugs": {
+		"url": "https://github.com/bitfocus/companion-module-magichome-bulb/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/bitfocus/companion-module-magichome-bulb.git"
+	}
+}
